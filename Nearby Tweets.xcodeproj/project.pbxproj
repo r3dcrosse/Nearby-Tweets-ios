@@ -19,6 +19,7 @@
 		816BDA731C102388002A95E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816BDA711C102388002A95E1 /* LaunchScreen.storyboard */; };
 		816BDA7E1C102388002A95E1 /* Nearby_TweetsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816BDA7D1C102388002A95E1 /* Nearby_TweetsTests.swift */; };
 		816BDA891C102388002A95E1 /* Nearby_TweetsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816BDA881C102388002A95E1 /* Nearby_TweetsUITests.swift */; };
+		8176B3411C194619005F2A23 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8176B3401C194619005F2A23 /* TimelineViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		816BDA841C102388002A95E1 /* Nearby TweetsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Nearby TweetsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		816BDA881C102388002A95E1 /* Nearby_TweetsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nearby_TweetsUITests.swift; sourceTree = "<group>"; };
 		816BDA8A1C102388002A95E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8176B3401C194619005F2A23 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			children = (
 				816BDA651C102387002A95E1 /* AppDelegate.swift */,
 				816BDA671C102387002A95E1 /* TweetsViewController.swift */,
+				8176B3401C194619005F2A23 /* TimelineViewController.swift */,
 				816BDA691C102388002A95E1 /* Main.storyboard */,
 				816BDA6F1C102388002A95E1 /* Assets.xcassets */,
 				816BDA711C102388002A95E1 /* LaunchScreen.storyboard */,
@@ -296,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				816BDA681C102387002A95E1 /* TweetsViewController.swift in Sources */,
+				8176B3411C194619005F2A23 /* TimelineViewController.swift in Sources */,
 				816BDA6E1C102388002A95E1 /* Nearby_Tweets.xcdatamodeld in Sources */,
 				816BDA661C102387002A95E1 /* AppDelegate.swift in Sources */,
 			);

@@ -10,17 +10,19 @@ import UIKit
 import CoreData
 import Fabric
 import TwitterKit
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        Twitter.sharedInstance().startWithConsumerKey("mFe8P5bNeGbjVSORJrXgXUjZO", consumerSecret: "89OzW3ycplBo8zUrwyK0do1Tv84zT2yiQ6pinO7KayC2uqyJdB")
+        //Twitter.sharedInstance().startWithConsumerKey("mFe8P5bNeGbjVSORJrXgXUjZO", consumerSecret: "89OzW3ycplBo8zUrwyK0do1Tv84zT2yiQ6pinO7KayC2uqyJdB")
+        Twitter.sharedInstance().startWithConsumerKey("OIW6oRjzg1AFBJzuA2eri9gp8", consumerSecret: "4RtJyoXT2PfeUVADAs1kL0dIXwpjFsmrYUqHWRwMrzegrR0KvV")
         Fabric.with([Twitter.self]) // Part of Fabric framework for Twitter API
+        
         return true
     }
 

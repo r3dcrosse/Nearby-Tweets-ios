@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TweetsViewController.swift
 //  Nearby Tweets
 //
 //  Created by David Wayman on 12/2/15.
@@ -9,13 +9,40 @@
 import UIKit
 import Fabric
 import TwitterKit
+import CoreLocation
 
-class TweetsViewController: UIViewController {
+class TweetsViewController: UIViewController, CLLocationManagerDelegate {
+    
+    // Part of getting location, declare global variable
+    private var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        loadTweets()
+        
+        // Get location:
+        self.locationManager.delegate = self
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.startUpdatingLocation()
+        
+        let logInButton = TWTRLogInButton(logInCompletion: { session, error in
+            if (session != nil) {
+                print("signed in as \(session!.userName)");
+            } else {
+                print("error: \(error!.localizedDescription)");
+            }
+        })
+        logInButton.center = self.view.center
+        self.view.addSubview(logInButton)
+        
+        Twitter.sharedInstance().logInWithCompletion {(session, error) in
+            if let s = session {
+                print("logged in user with id \(session!.userID)")
+            } else {
+                // log error
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,29 +50,18 @@ class TweetsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func loadTweets() {
-        let client = TWTRAPIClient()
-        let statusesShowEndpoint = "https://api.twitter.com/1.1/statuses/show.json"
-        let params = ["id": "20"]
-        var clientError : NSError?
-        
-        let request = Twitter.sharedInstance().APIClient.URLRequestWithMethod("GET", URL: statusesShowEndpoint, parameters: params, error: &clientError)
-        
-        if request != nil {
-            client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
-                if (connectionError == nil) {
-                    var jsonError : NSError?
-                    let json : AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &jsonError)
-                }
-                else {
-                    print("Error: \(connectionError)")
-                }
-            }
-        }
-        else {
-            print("Error: \(clientError)")
-        }
-
+    // Location triggered callback 1
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("didFailWithError: \(error.description)")
+        let errorAlert = UIAlertView(title: "Error", message: "Failed to Get Your Location", delegate: nil, cancelButtonTitle: "Ok")
+        errorAlert.show()
+    }
+    
+    // Location triggered callback 2
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]!) {
+        let newLocation = locations.last as CLLocation!
+        print("current position: \(newLocation.coordinate.longitude) , \(newLocation.coordinate.latitude)")
+    }
 
 }
 
