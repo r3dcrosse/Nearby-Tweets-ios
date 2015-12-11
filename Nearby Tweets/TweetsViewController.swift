@@ -13,8 +13,15 @@ import CoreLocation
 
 class TweetsViewController: UIViewController, CLLocationManagerDelegate {
     
+    
+    @IBOutlet weak var latitudeLabel: UILabel!
+    @IBOutlet weak var longitudeLabel: UILabel!
+    @IBOutlet weak var signedInLabel: UILabel!
+    @IBOutlet weak var printLocationButton: UIButton!
     // Part of getting location, declare global variable
     private var locationManager = CLLocationManager()
+    var longitude: Double = 0.0
+    var latitude: Double = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,13 +43,16 @@ class TweetsViewController: UIViewController, CLLocationManagerDelegate {
         logInButton.center = self.view.center
         self.view.addSubview(logInButton)
         
-        Twitter.sharedInstance().logInWithCompletion {(session, error) in
-            if let s = session {
-                print("logged in user with id \(session!.userID)")
+        Twitter.sharedInstance().logInWithCompletion { session, error in
+            if (session != nil) {
+                print("signed in as \(session!.userName)");
+                self.signedInLabel.text = "Signed in as \(session!.userName)"
+                
             } else {
-                // log error
+                print("error: \(error!.localizedDescription)");
             }
         }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,7 +70,15 @@ class TweetsViewController: UIViewController, CLLocationManagerDelegate {
     // Location triggered callback 2
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]!) {
         let newLocation = locations.last as CLLocation!
-        print("current position: \(newLocation.coordinate.longitude) , \(newLocation.coordinate.latitude)")
+        
+        longitude = newLocation.coordinate.longitude
+        latitude = newLocation.coordinate.latitude
+    }
+    
+    @IBAction func printLocation(sender: AnyObject) {
+        print(latitude , longitude)
+        latitudeLabel.text = "latitude: \(latitude)"
+        longitudeLabel.text = "longitude: \(longitude)"
     }
 
 }

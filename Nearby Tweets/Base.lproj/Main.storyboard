@@ -18,18 +18,53 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJm-ja-fAP">
-                                <rect key="frame" x="277" y="103" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="257" y="103" width="86" height="30"/>
+                                <state key="normal" title="View Tweets"/>
                                 <connections>
                                     <segue destination="1AG-l9-vB8" kind="presentation" id="KOT-ce-6yL"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pjP-o6-8DD">
+                                <rect key="frame" x="253" y="165" width="95" height="30"/>
+                                <state key="normal" title="Print Location"/>
+                                <connections>
+                                    <action selector="printLocation:" destination="rDk-4A-O2l" eventType="touchDown" id="h8w-F8-4bB"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Signed in as..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sob-pn-1tn">
+                                <rect key="frame" x="247" y="429" width="107" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="latitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRt-vC-ZpR">
+                                <rect key="frame" x="263" y="483" width="58" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="longitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoR-ml-5D9">
+                                <rect key="frame" x="249" y="512" width="72" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Sob-pn-1tn" firstAttribute="centerX" secondItem="Nhf-qw-cR2" secondAttribute="centerX" id="WWX-PL-aQt"/>
                             <constraint firstItem="gJm-ja-fAP" firstAttribute="centerX" secondItem="Nhf-qw-cR2" secondAttribute="centerX" id="bHF-4L-ISH"/>
+                            <constraint firstItem="pjP-o6-8DD" firstAttribute="centerX" secondItem="Nhf-qw-cR2" secondAttribute="centerX" id="f6B-r7-Kfr"/>
+                            <constraint firstItem="RRt-vC-ZpR" firstAttribute="centerX" secondItem="Nhf-qw-cR2" secondAttribute="centerX" id="hLI-77-hxl"/>
+                            <constraint firstItem="Sob-pn-1tn" firstAttribute="centerX" secondItem="Nhf-qw-cR2" secondAttribute="centerX" id="jAB-Jl-jjL"/>
+                            <constraint firstItem="hoR-ml-5D9" firstAttribute="centerX" secondItem="Nhf-qw-cR2" secondAttribute="centerX" id="pvA-nc-ib5"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="latitudeLabel" destination="RRt-vC-ZpR" id="D6c-Jv-LFE"/>
+                        <outlet property="longitudeLabel" destination="hoR-ml-5D9" id="o3l-uO-Qk7"/>
+                        <outlet property="printLocationButton" destination="pjP-o6-8DD" id="RLM-1j-Hvf"/>
+                        <outlet property="signedInLabel" destination="Sob-pn-1tn" id="9jI-3D-Xv9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ryn-jn-jYH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -38,21 +73,18 @@
         <!--Timeline View Controller-->
         <scene sceneID="7MO-E0-Z7b">
             <objects>
-                <tableViewController restorationIdentifier="TimelineViewController" storyboardIdentifier="TimelineViewController" id="1AG-l9-vB8" customClass="TWTRTimelineViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TimelineViewController" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gHy-st-NzY">
+                <tableViewController restorationIdentifier="TimelineViewController" storyboardIdentifier="TimelineViewController" id="1AG-l9-vB8" customClass="TimelineViewController" customModule="Nearby_Tweets" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="center" restorationIdentifier="TimelineViewController" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gHy-st-NzY">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="JDZ-CD-H0j" customClass="TWTRTweetTableViewCell">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JDZ-CD-H0j" id="nZT-i0-7sW">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                        <navigationBar key="tableFooterView" contentMode="scaleToFill" id="pm8-Tq-xsg">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <items>
+                                <navigationItem title="Title" id="peA-yR-ikP"/>
+                            </items>
+                        </navigationBar>
                         <connections>
                             <outlet property="dataSource" destination="1AG-l9-vB8" id="uId-q9-Ubc"/>
                             <outlet property="delegate" destination="1AG-l9-vB8" id="5QJ-cT-39f"/>
@@ -61,7 +93,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qRQ-Aw-hah" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1698" y="405"/>
+            <point key="canvasLocation" x="1701" y="399"/>
         </scene>
     </scenes>
 </document>
