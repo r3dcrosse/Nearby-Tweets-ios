@@ -10,6 +10,10 @@ import UIKit
 import TwitterKit
 
 class TimelineViewController: UITableViewController, TWTRTweetViewDelegate {
+    
+    
+    // @IBOutlet weak var tableView: UITableView!
+    
     let tweetTableReuseIdentifier = "TweetCell"
     // Hold all the loaded Tweets
     var tweets: [TWTRTweet] = [] {
@@ -26,7 +30,7 @@ class TimelineViewController: UITableViewController, TWTRTweetViewDelegate {
         tableView.rowHeight = UITableViewAutomaticDimension // Explicitly set on iOS 8 if using automatic row height calculation
         tableView.allowsSelection = false
         tableView.registerClass(TWTRTweetTableViewCell.self, forCellReuseIdentifier: tweetTableReuseIdentifier)
-        self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+        // self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
         
         // Load Tweets
         let client = TWTRAPIClient()

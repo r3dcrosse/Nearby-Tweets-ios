@@ -13,7 +13,6 @@ import CoreLocation
 
 class TweetsViewController: UIViewController, CLLocationManagerDelegate {
     
-    
     @IBOutlet weak var latitudeLabel: UILabel!
     @IBOutlet weak var longitudeLabel: UILabel!
     @IBOutlet weak var signedInLabel: UILabel!
