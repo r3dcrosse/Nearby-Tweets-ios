@@ -8,6 +8,7 @@
 
 import UIKit
 import TwitterKit
+import Alamofire
 
 class TimelineViewController: UITableViewController, TWTRTweetViewDelegate {
     
@@ -40,6 +41,18 @@ class TimelineViewController: UITableViewController, TWTRTweetViewDelegate {
             } else {
                 print("Failed to load tweets: \(error!.localizedDescription)")
             }
+        }
+        
+        Alamofire.request(.GET, "https://api.twitter.com/1.1/search/tweets.json", parameters: ["geocode": "37.781157,-122.398720,1mi"])
+            .responseJSON { response in
+                print(response.request)  // original URL request
+                print(response.response) // URL response
+                print(response.data)     // server data
+                print(response.result)   // result of response serialization
+                
+                if let JSON = response.result.value {
+                    print("JSON: \(JSON)")
+                }
         }
     }
     
