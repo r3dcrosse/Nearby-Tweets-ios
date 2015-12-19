@@ -23,6 +23,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Twitter.sharedInstance().startWithConsumerKey("OIW6oRjzg1AFBJzuA2eri9gp8", consumerSecret: "4RtJyoXT2PfeUVADAs1kL0dIXwpjFsmrYUqHWRwMrzegrR0KvV")
         Fabric.with([Twitter.self]) // Part of Fabric framework for Twitter API
         
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let isNotFirstLoad = userDefaults.boolForKey("is_not_first_load")
+        
+        // If finished launching with options:
+        if (!isNotFirstLoad) {
+            userDefaults.setDouble(0.0, forKey: "longitude")
+            userDefaults.setDouble(0.0, forKey: "latitude")
+            userDefaults.setBool(true, forKey:  "is_not_first_load")
+            userDefaults.synchronize()
+        }
+        
         return true
     }
 

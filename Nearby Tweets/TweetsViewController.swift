@@ -21,6 +21,7 @@ class TweetsViewController: UIViewController, CLLocationManagerDelegate {
     private var locationManager = CLLocationManager()
     var longitude: Double = 0.0
     var latitude: Double = 0.0
+    let userDefaults = NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +79,10 @@ class TweetsViewController: UIViewController, CLLocationManagerDelegate {
         print(latitude , longitude)
         latitudeLabel.text = "latitude: \(latitude)"
         longitudeLabel.text = "longitude: \(longitude)"
+        
+        userDefaults.setDouble(latitude, forKey: "latitude")
+        userDefaults.setDouble(longitude, forKey: "longitude")
+        userDefaults.synchronize()
     }
 
 }

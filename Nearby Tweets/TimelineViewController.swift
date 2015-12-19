@@ -12,8 +12,10 @@ import Alamofire
 
 class TimelineViewController: UITableViewController, TWTRTweetViewDelegate {
     
+    let userDefaults = NSUserDefaults.standardUserDefaults()
     
-    // @IBOutlet weak var tableView: UITableView!
+    var longitude: Double = 0.0
+    var latitude: Double = 0.0
     
     let tweetTableReuseIdentifier = "TweetCell"
     // Hold all the loaded Tweets
@@ -43,7 +45,7 @@ class TimelineViewController: UITableViewController, TWTRTweetViewDelegate {
             }
         }
         
-        Alamofire.request(.GET, "https://api.twitter.com/1.1/search/tweets.json", parameters: ["geocode": "37.781157,-122.398720,1mi"])
+        Alamofire.request(.GET, "https://api.twitter.com/1.1/search/tweets.json", parameters:["geocode": "\(userDefaults.doubleForKey("latitude")),\(userDefaults.doubleForKey("longitude")),1mi"])
             .responseJSON { response in
                 print(response.request)  // original URL request
                 print(response.response) // URL response
